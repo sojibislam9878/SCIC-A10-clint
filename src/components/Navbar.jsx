@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-// import useAuth from "../Hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-//  const { user, logout } = useAuth();
- const user= true
+ const { user } = useAuth();
+console.log(user);
+
+ 
+//  const user= true
 //   const normalLink = "lg:font-bold lg:text-lg lg:mr-2 mt-2 lg:mt-0";
 //   const activeLink = `bg-gradient-to-r from-[#003366] to-[#003366] border border-blure-500 text-white border-none hover:bg-transparent focus:bg-transparent focus:text-white ${normalLink}`;
   return (
