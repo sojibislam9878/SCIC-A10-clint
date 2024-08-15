@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {user, login, googleSignUP, githubSignUP } = useAuth();
   const locations = useLocation();
   const navigate = useNavigate();
   const {
@@ -12,36 +13,39 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { login, googleSignUP, githubSignUP } = useAuth();
   const onSubmit = (data) => {
     login(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
-
-        navigate(locations?.state ? locations.state : "/");
-      })
-      .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Your password or email wrong",
-        });
+    .then((res) => {
+      console.log(res.user);
+      
+      navigate(locations?.state ? locations.state : "/");
+    })
+    .catch(() => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Your password or email wrong",
       });
+    });
   };
-
+  
   const handleGoogleSignUP = () => {
     googleSignUP();
   };
-
+  
   const [isHide, setIsHide] = useState(false);
   const handleHide = () => {
     setIsHide(!isHide);
   };
-
-    return (
-        <div
-      style={{
-        // backgroundImage: `linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(${loginphoto})`,
+  
+  if (user) {
+      return navigate("/")
+  }
+  
+  return (
+    <div
+    style={{
+      // backgroundImage: `linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(${loginphoto})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",

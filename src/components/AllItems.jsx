@@ -16,7 +16,6 @@ const AllItems = () => {
     
   
     const [loading, setloading] = useState(true);
-    console.log("data count", dataCount);
     
   
     useEffect(() => {
@@ -25,7 +24,6 @@ const AllItems = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
           setAllItems(data);
           setloading(false);
         });

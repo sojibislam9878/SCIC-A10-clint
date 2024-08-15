@@ -28,8 +28,7 @@ const AuthProvider = ({ children }) => {
 
   // email password authentications 
   const createUserWithEmail = (email, password, toast) => {
-    // setLoading(true);
-    console.log(password, email, );
+    setLoading(true);
     
     if (password.length < 6) {
       return toast.warn("Password must be at least 6 characters long", {
@@ -74,6 +73,7 @@ const AuthProvider = ({ children }) => {
       showConfirmButton: false,
       timer: 1500,
     });
+    setLoading(false);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
@@ -128,6 +128,27 @@ const AuthProvider = ({ children }) => {
       displayName: name,
     });
   };
+
+  //save user to database
+  if (user) {
+    // console.log(user);
+    const {displayName, email, }= user
+    const dataUser = {name:displayName, email, role:"user"}
+    console.log(dataUser);
+    
+    fetch("http://localhost:3000/users", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(dataUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+    
+  }
 
   // social login providers
   

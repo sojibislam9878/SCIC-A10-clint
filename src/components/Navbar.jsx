@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
- const { user } = useAuth();
+ const { user , logout} = useAuth();
 console.log(user);
 
  
@@ -69,11 +69,11 @@ console.log(user);
             to="/"
             className="btn btn-ghost md:text-3xl text-xl font-play text-[#3181d1]"
           >
-            Vanguard Estates
+            Shop Sport
           </Link> */}
           <Link to="/">
-          <div className="lg:w-2/6 md:w-3/6 ml-4 cursor-pointer">
-                <img className="w-[1000px] h-[70px] object-cover" src="https://i.ibb.co/Rjc7pxC/logo.png" alt="" />
+          <div className="lg:w-2/6 md:w-2/6 ml-4 cursor-pointer border rounded-lg">
+                <img className="w-[1000px] h-[70px] object-contain" src="https://i.ibb.co/TTBYpkM/Screenshot-2024-08-15-211710.png" alt="" />
               </div>
           </Link>
         </div>
@@ -103,14 +103,14 @@ console.log(user);
         </div> */}
         <div className="navbar-end flex ">
           {user ? (
-            <div className=" flex justify-center gap-2 pr-2 md:pr-0">
+            <div className=" flex justify-center gap-2">
               <div className="dropdown dropdown-end mt-1">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost btn-circle avatar"
+                  className="border border-white rounded-full hover:border-gray-500 duration-200 avatar"
                 >
-                  <div className="w-30 rounded-full">
+                  <div className="h-16  rounded-full">
                     <img
                       alt="Tailwind CSS Navbar component"
                       src={
@@ -126,12 +126,12 @@ console.log(user);
                   <li className="text-center text-lg font-bold mb-6 mt-3">
                     {user?.displayName}
                   </li>
-                  <li>
+                  <li className={`${user?.role ? "flex" : "hidden"}`}>
                     <Link to="/dashboard" className="text-lg mb-4 font-semibold">Dashboard</Link>
                   </li>
                   <li>
                   <button
-                // onClick={logout}
+                onClick={logout}
                 className="btn mt-1 bg-[#003366] text-white font-bold hover:bg-[#072644]"
               >
                 Logout

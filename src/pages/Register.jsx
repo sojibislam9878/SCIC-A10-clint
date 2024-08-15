@@ -17,11 +17,11 @@ import { useState } from "react";
     const { createUserWithEmail, updateUser, logout } = useAuth();
     
     const onSubmit = (data) => {
-      const { email, password, name, photo } = data;
+      const { email, password, name } = data;
       console.log(data);
       
       createUserWithEmail(email, password, toast).then(() => {
-        updateUser(name, photo);
+        updateUser(name);
         logout()
         navigate("/login");
       });
@@ -77,7 +77,7 @@ import { useState } from "react";
             />
           </div>
           {errors.email && <span className="text-red-600">Enter Email</span>}
-          <div className="flex justify-center items-center gap-2 border-b-2">
+          {/* <div className="flex justify-center items-center gap-2 border-b-2">
             <span className="material-symbols-outlined mt-6">image</span>
             <input
               type="url"
@@ -85,7 +85,7 @@ import { useState } from "react";
               {...register("photo", { required: true })}
               className="w-full py-4  outline-none mt-6 bg-transparent "
             />
-          </div>
+          </div> */}
           {errors.photo && (
             <span className="text-red-600">Give Your Photo URL</span>
           )}

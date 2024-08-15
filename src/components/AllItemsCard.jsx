@@ -20,7 +20,6 @@ const AllItemsCard = ({ item }) => {
   const minutes = dateObj.getUTCMinutes().toString().padStart(2, "0"); // "00"
 
   const time = `${hours}:${minutes}`;
-  console.log(time);
 
   const oldPrice = parseInt(price) + 6.99;
 
