@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import AllItemsCard from "./AllItemsCard";
 
 const AllItems = () => {
     const [allItemsCards, setAllItemsCards] = useState([]);
@@ -137,8 +138,10 @@ const AllItems = () => {
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
         </div>
 
-        <div>
-            {allItemsCards.length}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+            {
+              allItemsCards.map(item=>(<AllItemsCard key={item._id} item={item}></AllItemsCard>))
+            }
         </div>
 
         <div className="md:mb-36  mb-8">
