@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import AllItemsCard from "./AllItemsCard";
 
 const AllItems = () => {
-    const [allItemsCards, setAllItemsCards] = useState([]);
-    const cardPerPage = 1;
+    const [allItems, setAllItems] = useState([]);
+    const cardPerPage = 6;
     const [dataCount, setDataCount] = useState(1);
     const [filter, setFilter] = useState("");
     const [sort, setSort] = useState("");
+    const [sort2, setSort2] = useState("");
     const [search, setSearch] = useState("");
     const [serchText, setSearchText] = useState("");
     const totalPage = Math.ceil(dataCount / cardPerPage);
     const [currentPage, setCurrentPage] = useState(1);
     const pages = [...Array(totalPage).keys()].map((i) => i + 1);
+    
   
     const [loading, setloading] = useState(true);
     console.log("data count", dataCount);
@@ -19,15 +21,15 @@ const AllItems = () => {
   
     useEffect(() => {
       fetch(
-        `http://localhost:3000/allitemspagination?page=${currentPage}&size=${cardPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+        `http://localhost:3000/allitemspagination?page=${currentPage}&size=${cardPerPage}&filter=${filter}&sort=${sort}&sort2=${sort2}&search=${search}`
       )
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
-          setAllItemsCards(data);
+          setAllItems(data);
           setloading(false);
         });
-    }, [currentPage, cardPerPage, filter, sort, search]);
+    }, [currentPage, cardPerPage, filter, sort, sort2, search]);
   
     useEffect(() => {
       fetch(
@@ -63,6 +65,7 @@ const AllItems = () => {
     const handleReset = () => {
       setFilter("");
       setSort("");
+      setSort2("");
       setSearchText("");
     };
   
@@ -81,16 +84,17 @@ const AllItems = () => {
                 id="category"
                 className="border p-4 rounded-lg"
               >
-                <option value="">Food Category</option>
-                <option value="Thai">Thai</option>
-                <option value="Italian">Italian</option>
-                <option value="American">American</option>
-                <option value="Dessert">Dessert</option>
-                <option value="Bakery">Bakery</option>
-                <option value="Indian">Indian</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Salad">Salad</option>
-                <option value="Appetizer">Appetizer</option>
+                <option value="">Item Category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Footwear">Footwear</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Health">Health</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Home Automation">Home Automation</option>
+                <option value="Appliances">Appliances</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Home & Office">Home & Office</option>
+                <option value="Transportation">Transportation</option>
               </select>
             </div>
 
@@ -104,8 +108,8 @@ const AllItems = () => {
                   className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                   type="text"
                   name="search"
-                  placeholder="Enter Job Title"
-                  aria-label="Enter Job Title"
+                  placeholder="Item name"
+                  aria-label="Item name"
                 />
 
                 <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
@@ -117,6 +121,7 @@ const AllItems = () => {
               <select
                 onChange={(e) => {
                   setSort(e.target.value);
+                  setSort2("")
                 }}
                 value={sort}
                 name="category"
@@ -126,6 +131,21 @@ const AllItems = () => {
                 <option value="">Sort By Price</option>
                 <option value="high">High to Low</option>
                 <option value="low">Low to High</option>
+              </select>
+            </div>
+            <div>
+              <select
+                onChange={(e) => {
+                  setSort2(e.target.value);
+                  setSort("")
+                }}
+                value={sort2}
+                name="date"
+                id="date"
+                className="border p-4 rounded-md"
+              >
+                <option value="">Sort By Date</option>
+                <option value="newest">Newest first</option>
               </select>
             </div>
             <button
@@ -140,7 +160,7 @@ const AllItems = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
             {
-              allItemsCards.map(item=>(<AllItemsCard key={item._id} item={item}></AllItemsCard>))
+              allItems.map(item=>(<AllItemsCard key={item._id} item={item}></AllItemsCard>))
             }
         </div>
 
