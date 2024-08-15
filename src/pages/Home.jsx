@@ -2,8 +2,7 @@ import AllItems from "../components/AllItems";
 
 const Home = () => {
     return (
-        <div>
-            <p>This is home</p>
+        <div className="container mx-auto p-4">
             <AllItems></AllItems>
         </div>
     );
