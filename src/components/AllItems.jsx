@@ -75,10 +75,6 @@ const AllItems = () => {
       setSort("");
       setSort2("");
     };
-  
-    // if (loading) {
-    //   return <Spinner></Spinner>
-    // }
     return (
         <div className="mt-12">
             <div>
@@ -124,7 +120,7 @@ const AllItems = () => {
                 <option value="Home Automation">Home Automation</option>
                 <option value="Appliances">Appliances</option>
                 <option value="Furniture">Furniture</option>
-                <option value="Home & Office">Home & Office</option>
+                <option value="Home And Office">Home & Office</option>
                 <option value="Transportation">Transportation</option>
               </select>
             </div>
@@ -141,6 +137,33 @@ const AllItems = () => {
                 <option value="">Item Brand</option>
                 <option value="Samsung">Samsung</option>
                 <option value="Apple">Apple</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
+                <option value="Nike">Nike</option>
                 <option value="Nike">Nike</option>
               </select>
             </div>

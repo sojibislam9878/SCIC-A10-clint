@@ -1,6 +1,4 @@
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
-// import { Link } from "react-router-dom";
-// import footerphoto from "../assets/images/footer.jpg";
 
 const Footer = () => {
   return (
@@ -32,24 +30,6 @@ const Footer = () => {
               <h6 className="font-semibold opacity-80">info@email.com</h6>
               <h6 className="font-semibold opacity-80">+18400000000</h6>
             </div>
-            {/* <div className="mt-8">
-              <h1 className="text-2xl font-semibold">Useful Links</h1>
-              <Link to="/">
-                <h6 className="font-semibold opacity-80 hover:opacity-100 hover:underline">
-                  Home
-                </h6>
-              </Link>
-              <Link to="/allcarft">
-                <h6 className="font-semibold opacity-80 hover:opacity-100 hover:underline">
-                  All Foods
-                </h6>
-              </Link>
-              <Link to="/addcarft">
-                <h6 className="font-semibold opacity-80 hover:opacity-100 hover:underline">
-                  Gallery
-                </h6>
-              </Link>
-            </div> */}
           </div>
           <div className=" md:flex justify-between text-center mt-12 pb-6">
             <div>
