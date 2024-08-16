@@ -25,7 +25,10 @@ const AllItemsCard = ({ item}) => {
 
   const slicedOldPrice = parseFloat(oldPrice.toString().slice(0, 5));
 
+  
+  
  
+  
 
   return (
     <div>

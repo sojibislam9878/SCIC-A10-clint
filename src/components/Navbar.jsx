@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
  const { user , logout} = useAuth();
 console.log(user);
-
+const role = useRole()
  
 //  const user= true
 //   const normalLink = "lg:font-bold lg:text-lg lg:mr-2 mt-2 lg:mt-0";
@@ -126,7 +127,7 @@ console.log(user);
                   <li className="text-center text-lg font-bold mb-6 mt-3">
                     {user?.displayName}
                   </li>
-                  <li className={`${user?.role ? "flex" : "hidden"}`}>
+                  <li className={`${role === "admin" ? "flex" : "hidden"}`}>
                     <Link to="/dashboard" className="text-lg mb-4 font-semibold">Dashboard</Link>
                   </li>
                   <li>
