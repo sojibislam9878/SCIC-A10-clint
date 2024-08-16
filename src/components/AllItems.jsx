@@ -20,7 +20,7 @@ const AllItems = () => {
   
     useEffect(() => {
       fetch(
-        `http://localhost:3000/allitemspagination?page=${currentPage}&size=${cardPerPage}&filter=${filter}&sort=${sort}&sort2=${sort2}&search=${search}`
+        `https://scica10.vercel.app/allitemspagination?page=${currentPage}&size=${cardPerPage}&filter=${filter}&sort=${sort}&sort2=${sort2}&search=${search}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -31,7 +31,7 @@ const AllItems = () => {
   
     useEffect(() => {
       fetch(
-        `http://localhost:3000/itemscounts?filter=${filter}&search=${search}`
+        `https://scica10.vercel.app/itemscounts?filter=${filter}&search=${search}`
       )
         .then((res) => res.json())
         .then((data) => {

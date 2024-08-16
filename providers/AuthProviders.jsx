@@ -136,7 +136,7 @@ const AuthProvider = ({ children }) => {
     const dataUser = {name:displayName, email, role:"user"}
     console.log(dataUser);
     
-    fetch("http://localhost:3000/users", {
+    fetch("https://scica10.vercel.app/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
