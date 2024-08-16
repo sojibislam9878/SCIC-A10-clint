@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import AllItemsCard from "./AllItemsCard";
+import Spinner from "./Spinner";
+// import Spinner from "./Spinner";
 
 const AllItems = () => {
     const [allItems, setAllItems] = useState([]);
@@ -16,9 +18,11 @@ const AllItems = () => {
     
   
     const [loading, setloading] = useState(true);
+    console.log(search);
     
   
     useEffect(() => {
+      setloading(true)
       fetch(
         `https://scica10.vercel.app/allitemspagination?page=${currentPage}&size=${cardPerPage}&filter=${filter}&sort=${sort}&sort2=${sort2}&search=${search}`
       )
@@ -30,6 +34,7 @@ const AllItems = () => {
     }, [currentPage, cardPerPage, filter, sort, sort2, search]);
   
     useEffect(() => {
+      setloading(true)
       fetch(
         `https://scica10.vercel.app/itemscounts?filter=${filter}&search=${search}`
       )
@@ -61,17 +66,18 @@ const AllItems = () => {
     };
   
     const handleReset = () => {
+      setSearchText("");
+      setSearch("")
       setFilter("");
       setSort("");
       setSort2("");
-      setSearchText("");
     };
   
-    if (loading) {
-      return <p>page is loading</p>
-    }
+    // if (loading) {
+    //   return <Spinner></Spinner>
+    // }
     return (
-        <div>
+        <div className="mt-12">
             <div>
           <div className="flex flex-col lg:flex-row justify-center gap-2">
             
@@ -162,11 +168,11 @@ const AllItems = () => {
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-            {
-              allItems.map(item=>(<AllItemsCard key={item._id} item={item}></AllItemsCard>))
+        {loading ? <Spinner></Spinner> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+            { 
+              allItems.map(item=>(<AllItemsCard key={item._id} item={item} loading={loading}></AllItemsCard>))
             }
-        </div>
+        </div>}
 
         <div className="md:mb-36  mb-8">
           <div className="flex justify-center mt-12">
