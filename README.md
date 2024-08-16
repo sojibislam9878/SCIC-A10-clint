@@ -1,8 +1,14 @@
-# React + Vite
+# Shop Spot
+This website is designed as an e-commerce website. The products are detailed on this website. On this website, users can view the products by customizing them according to thir preferences. The website has a separate dashboardd for the adimin, formwhere the admin can control the entire website. <br>Here is website live URL-->https://scic-a10.web.app <br> <br> [Server site code](https://github.com/sojibislam9878/SCIC-A10_server)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features and characteristics
+* This website is responsive for mobile, tab and desktop.
+* It's SPA (Single page application).
+* This website uses a real database (MongoDB)
+* On this website uses React Toast and Sweet alart for Better experience.
+* This website hosted on google firebase.
+* This website has signup and loging validation.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Admin accoutn info
+admin email-> admin@gmail.com <br>
+admin password-> 123456
