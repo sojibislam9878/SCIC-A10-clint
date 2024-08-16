@@ -5,7 +5,7 @@ import useRole from "../../hooks/useRole";
 const Navbar = () => {
  const { user , logout} = useAuth();
 console.log(user);
-const role = useRole()
+const [role]= useRole()
  
 //  const user= true
 //   const normalLink = "lg:font-bold lg:text-lg lg:mr-2 mt-2 lg:mt-0";

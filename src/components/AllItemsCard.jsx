@@ -1,5 +1,6 @@
 // import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+// import NoData from "./NoData";
 const AllItemsCard = ({ item}) => {
   const {
     // _id,
@@ -25,8 +26,6 @@ const AllItemsCard = ({ item}) => {
 
   const slicedOldPrice = parseFloat(oldPrice.toString().slice(0, 5));
 
-  
-  
  
   
 

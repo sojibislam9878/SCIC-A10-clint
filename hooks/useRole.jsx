@@ -25,6 +25,7 @@ import useAuth from './useAuth';
 const useRole = () => {
     const { user, loading } = useAuth();
     const [role, setRole] = useState(null);
+    const [isLoading, setIsLoading]= useState(true)
 
     useEffect(() => {
         if (!loading && user?.email) {
@@ -33,6 +34,7 @@ const useRole = () => {
                 .then((data) => {
                     const { role } = data;
                     setRole(role);
+                    setIsLoading(false)
                 })
                 .catch((error) => {
                     console.error('Error fetching role:', error);
@@ -40,7 +42,7 @@ const useRole = () => {
         }
     }, [loading, user]);
 
-    return role;
+    return [role, isLoading];
 };
 
 export default useRole;

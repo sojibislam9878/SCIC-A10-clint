@@ -19,13 +19,12 @@ import { RiCoupon3Line } from 'react-icons/ri';
 
 const Sidebar = () => {
   const { logout } = useAuth()
-const isLoading = false
 
   // const { user}=useAuth()
   // console.log(user?.email, loading);
 
   const [isActive, setActive] = useState(false)
-  const role=useRole()
+  const [role, isLoading]=useRole()
   
   
   // const [role, setRole]=useState()

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AllItemsCard from "./AllItemsCard";
 import Spinner from "./Spinner";
+import NoData from "./NoData";
 // import Spinner from "./Spinner";
 
 const AllItems = () => {
@@ -8,6 +9,7 @@ const AllItems = () => {
     const cardPerPage = 6;
     const [dataCount, setDataCount] = useState(1);
     const [filter, setFilter] = useState("");
+    const [brand, setBrand]=useState("")
     const [sort, setSort] = useState("");
     const [sort2, setSort2] = useState("");
     const [search, setSearch] = useState("");
@@ -18,32 +20,32 @@ const AllItems = () => {
     
   
     const [loading, setloading] = useState(true);
-    console.log(search);
+    console.log(brand);
     
   
     useEffect(() => {
       setloading(true)
       fetch(
-        `https://scica10.vercel.app/allitemspagination?page=${currentPage}&size=${cardPerPage}&filter=${filter}&sort=${sort}&sort2=${sort2}&search=${search}`
+        `https://scica10.vercel.app/allitemspagination?page=${currentPage}&size=${cardPerPage}&filter=${filter}&brand=${brand}&sort=${sort}&sort2=${sort2}&search=${search}`
       )
         .then((res) => res.json())
         .then((data) => {
           setAllItems(data);
           setloading(false);
         });
-    }, [currentPage, cardPerPage, filter, sort, sort2, search]);
+    }, [currentPage, cardPerPage, filter, sort, sort2, search, brand]);
   
     useEffect(() => {
       setloading(true)
       fetch(
-        `https://scica10.vercel.app/itemscounts?filter=${filter}&search=${search}`
+        `https://scica10.vercel.app/itemscounts?filter=${filter}&brand=${brand}&search=${search}`
       )
         .then((res) => res.json())
         .then((data) => {
           setDataCount(data.count);
           setloading(false);
         });
-    }, [filter, search]);
+    }, [filter, search, brand]);
   
     const handleSearch = (e) => {
       e.preventDefault();
@@ -69,6 +71,7 @@ const AllItems = () => {
       setSearchText("");
       setSearch("")
       setFilter("");
+      setBrand("")
       setSort("");
       setSort2("");
     };
@@ -126,6 +129,22 @@ const AllItems = () => {
               </select>
             </div>
 
+            {/* brand  */}
+            <div>
+              <select
+                onChange={(e) => setBrand(e.target.value)}
+                value={brand}
+                name="brand"
+                id="brand"
+                className="border p-4 rounded-lg"
+              >
+                <option value="">Item Brand</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Apple">Apple</option>
+                <option value="Nike">Nike</option>
+              </select>
+            </div>
+
 
             <div>
               <select
@@ -168,7 +187,7 @@ const AllItems = () => {
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
         </div>
 
-        {loading ? <Spinner></Spinner> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+        {loading ? <Spinner></Spinner> : allItems.length ==0 ? <NoData></NoData> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 ">
             { 
               allItems.map(item=>(<AllItemsCard key={item._id} item={item} loading={loading}></AllItemsCard>))
             }
@@ -178,7 +197,7 @@ const AllItems = () => {
           <div className="flex justify-center mt-12">
             <button
               onClick={handlePrevioustBtn}
-              className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white"
+              className={`${allItems.length === 0 ? "hidden" : ""}  px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white` }
             >
               <div className="flex items-center -mx-1">
                 <svg
@@ -214,7 +233,7 @@ const AllItems = () => {
 
             <button
               onClick={handleNextBtn}
-              className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+              className={` ${allItems.length === 0 ? "hidden" : ""} px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500` }
             >
               <div className="flex items-center -mx-1">
                 <span className="mx-1">Next</span>

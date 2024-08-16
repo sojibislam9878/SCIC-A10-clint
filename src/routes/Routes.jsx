@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import PrivetRoute from "../../privetroutes/PrivetRoute";
 import Dashboard from "../layouts/Dashboard";
 import NotComplete from "../components/NotComplete";
+import AdminRoute from "../../privetroutes/AdminRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
   },
   {
     path:"dashboard",
-    element:<Dashboard></Dashboard>,
+    element:<AdminRoute><Dashboard></Dashboard></AdminRoute>,
     children:[
       {
         path:"/dashboard",
