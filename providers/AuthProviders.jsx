@@ -18,10 +18,10 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
-  // email password authentications 
+  // email password authentications
   const createUserWithEmail = (email, password, toast) => {
     setLoading(true);
-    
+
     if (password.length < 6) {
       return toast.warn("Password must be at least 6 characters long", {
         position: "top-right",
@@ -45,24 +45,23 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-   //   userlogin
-   const login = (email, password) => {
+  //   userlogin
+  const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-   //   user
-   const [user, setUser] = useState(null);
+  //   user
+  const [user, setUser] = useState(null);
 
-
-   //   check user
-   useEffect(() => {
+  //   check user
+  useEffect(() => {
     const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
     });
     return () => unsubcribe();
   }, [user?.email]);
-  
+
   // logout
   const logout = () => {
     setUser(null);
@@ -80,10 +79,10 @@ const AuthProvider = ({ children }) => {
   //save user to database
   if (user) {
     // console.log(user);
-    const {displayName, email, }= user
-    const dataUser = {name:displayName, email, role:"user"}
+    const { displayName, email } = user;
+    const dataUser = { name: displayName, email, role: "user" };
     console.log(dataUser);
-    
+
     fetch("https://scica10.vercel.app/users", {
       method: "PUT",
       headers: {
@@ -95,11 +94,10 @@ const AuthProvider = ({ children }) => {
       .then((data) => {
         console.log(data);
       });
-    
   }
 
   // social login providers
-  
+
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
@@ -110,20 +108,16 @@ const AuthProvider = ({ children }) => {
     signInWithPopup(auth, githubProvider);
   };
 
-
-
-
   const values = {
     user,
     createUserWithEmail,
     login,
-    logout, 
+    logout,
     googleSignUP,
     githubSignUP,
     loading,
-    updateUser
+    updateUser,
   };
-
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

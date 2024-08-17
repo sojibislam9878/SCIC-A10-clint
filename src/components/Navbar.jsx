@@ -3,22 +3,25 @@ import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
- const { user , logout} = useAuth();
-console.log(user);
-const [role]= useRole()
+  const { user, logout } = useAuth();
+  console.log(user);
+  const [role] = useRole();
   return (
     <div className="sticky top-0 z-40 bg-base-100 shadow-xl ">
       <div className="navbar bg-base-100 container mx-auto p-4 ">
         <div className="navbar-start">
-          <div className="dropdown">
-          </div>
+          <div className="dropdown"></div>
           <Link to="/">
-          <div className="lg:w-2/6 md:w-2/6 ml-4 cursor-pointer border rounded-lg">
-                <img className="w-[1000px] h-[70px] object-contain" src="https://i.ibb.co/TTBYpkM/Screenshot-2024-08-15-211710.png" alt="" />
-              </div>
+            <div className="lg:w-2/6 md:w-2/6 ml-4 cursor-pointer border rounded-lg">
+              <img
+                className="w-[1000px] h-[70px] object-contain"
+                src="https://i.ibb.co/TTBYpkM/Screenshot-2024-08-15-211710.png"
+                alt=""
+              />
+            </div>
           </Link>
         </div>
-       
+
         <div className="navbar-end flex ">
           {user ? (
             <div className=" flex justify-center gap-2">
@@ -45,19 +48,23 @@ const [role]= useRole()
                     {user?.displayName}
                   </li>
                   <li className={`${role === "admin" ? "flex" : "hidden"}`}>
-                    <Link to="/dashboard" className="text-lg mb-4 font-semibold">Dashboard</Link>
+                    <Link
+                      to="/dashboard"
+                      className="text-lg mb-4 font-semibold"
+                    >
+                      Dashboard
+                    </Link>
                   </li>
                   <li>
-                  <button
-                onClick={logout}
-                className="btn mt-1 bg-[#003366] text-white font-bold hover:bg-[#072644]"
-              >
-                Logout
-              </button>
+                    <button
+                      onClick={logout}
+                      className="btn mt-1 bg-[#003366] text-white font-bold hover:bg-[#072644]"
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </div>
-              
             </div>
           ) : (
             <div className="hidden md:flex">

@@ -1,40 +1,37 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
-  const Register = () => {
-    
-    
-    const navigate = useNavigate();
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm();
-    const { createUserWithEmail, updateUser, logout } = useAuth();
-    
-    const onSubmit = (data) => {
-      const { email, password, name } = data;
-      console.log(data);
-      
-      createUserWithEmail(email, password, toast).then(() => {
-        updateUser(name);
-        logout()
-        navigate("/login");
-      });
-    };
-    
-    const [isHide, setIsHide] = useState(false);
+const Register = () => {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { createUserWithEmail, updateUser, logout } = useAuth();
+
+  const onSubmit = (data) => {
+    const { email, password, name } = data;
+    console.log(data);
+
+    createUserWithEmail(email, password, toast).then(() => {
+      updateUser(name);
+      logout();
+      navigate("/login");
+    });
+  };
+
+  const [isHide, setIsHide] = useState(false);
   const handleHide = () => {
     setIsHide(!isHide);
   };
 
-
-    return (
-        <div
+  return (
+    <div
       style={{
         // backgroundImage: `linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(${registerPhoto})`,
         backgroundSize: "cover",
@@ -43,11 +40,8 @@ import { useState } from "react";
       }}
       className="flex justify-center items-center  min-h-screen"
     >
-
       <div className=" rounded-lg p-6 md:w-2/3 xl:w-1/3 mx-auto shadow-xl backdrop-blur-md">
-        <form
-         onSubmit={handleSubmit(onSubmit)}
-         >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h1 className="text-4xl font-bold mt-12">Register New Account.</h1>
           <p className="font-medium mt-6 opacity-70">
             Create your Flavor Junction account
@@ -120,7 +114,7 @@ import { useState } from "react";
       </div>
       <ToastContainer />
     </div>
-    );
+  );
 };
 
 export default Register;

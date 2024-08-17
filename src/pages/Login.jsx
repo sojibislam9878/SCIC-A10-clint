@@ -1,11 +1,11 @@
-import { Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const {user, login, googleSignUP, githubSignUP } = useAuth();
+  const { user, login, googleSignUP, githubSignUP } = useAuth();
   const locations = useLocation();
   const navigate = useNavigate();
   const {
@@ -15,37 +15,37 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     login(data.email, data.password)
-    .then((res) => {
-      console.log(res.user);
-      
-      navigate(locations?.state ? locations.state : "/");
-    })
-    .catch(() => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Your password or email wrong",
+      .then((res) => {
+        console.log(res.user);
+
+        navigate(locations?.state ? locations.state : "/");
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Your password or email wrong",
+        });
       });
-    });
   };
-  
+
   const handleGoogleSignUP = () => {
     googleSignUP();
   };
-  
+
   const [isHide, setIsHide] = useState(false);
   const handleHide = () => {
     setIsHide(!isHide);
   };
-  
+
   if (user) {
-      return navigate("/")
+    return navigate("/");
   }
-  
+
   return (
     <div
-    style={{
-      // backgroundImage: `linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(${loginphoto})`,
+      style={{
+        // backgroundImage: `linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(${loginphoto})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -54,7 +54,7 @@ const Login = () => {
     >
       <div className="flex justify-center items-center p-4 pt-10 pb-12 flex-1">
         <div className=" rounded-lg p-6  md:w-2/3 xl:w-1/3 mx-auto shadow-2xl backdrop-blur-md ">
-          <form onSubmit= {handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-4xl font-bold mt-12">Log In</h1>
             <p className="font-medium mt-6 opacity-70">
               Log in to stay connected
@@ -134,7 +134,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Login;

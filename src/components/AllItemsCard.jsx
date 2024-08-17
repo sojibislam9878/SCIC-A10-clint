@@ -1,6 +1,5 @@
-
 import PropTypes from "prop-types";
-const AllItemsCard = ({ item}) => {
+const AllItemsCard = ({ item }) => {
   const {
     // _id,
     brand,
@@ -16,8 +15,8 @@ const AllItemsCard = ({ item}) => {
   const dateObj = new Date(createdAt);
 
   const date = dateObj.toISOString().split("T")[0];
-  const hours = dateObj.getUTCHours().toString().padStart(2, "0"); 
-  const minutes = dateObj.getUTCMinutes().toString().padStart(2, "0"); 
+  const hours = dateObj.getUTCHours().toString().padStart(2, "0");
+  const minutes = dateObj.getUTCMinutes().toString().padStart(2, "0");
 
   const time = `${hours}:${minutes}`;
 
@@ -25,14 +24,15 @@ const AllItemsCard = ({ item}) => {
 
   const slicedOldPrice = parseFloat(oldPrice.toString().slice(0, 5));
 
- 
-  
-
   return (
     <div>
       <div className="card card-compact bg-base-100 shadow-xl h-full">
         <figure>
-          <img src={image} alt="Shoes" className="h-[31rem] w-full object-cover"/>
+          <img
+            src={image}
+            alt="Shoes"
+            className="h-[31rem] w-full object-cover"
+          />
         </figure>
         <div className="card-body">
           <h2 className="text-4xl font-bold mt-4 font-play bg-gradient-to-r from-[#1ABC9C] to-[#62e6cb] bg-clip-text text-transparent">
@@ -57,12 +57,12 @@ const AllItemsCard = ({ item}) => {
             </p>
           </div>
           <div className="card-actions flex gap-8 mt-4">
-              <button className="btn btn-outline border-[#1ABC9C] hover:border-[#1ABC9C] text-[#1ABC9C] hover:bg-[#1ABC9C]">
-                Add To Cart
-              </button>
-              <button className="btn bg-[#1ABC9C]  text-white  hover:bg-transparent hover:border-[#1ABC9C] hover:text-[#1ABC9C]">
-                Buy Now
-              </button>
+            <button className="btn btn-outline border-[#1ABC9C] hover:border-[#1ABC9C] text-[#1ABC9C] hover:bg-[#1ABC9C]">
+              Add To Cart
+            </button>
+            <button className="btn bg-[#1ABC9C]  text-white  hover:bg-transparent hover:border-[#1ABC9C] hover:text-[#1ABC9C]">
+              Buy Now
+            </button>
           </div>
         </div>
       </div>
